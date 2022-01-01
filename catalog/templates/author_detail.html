@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% if author %}
+<h1>Title: {{ author.last_name}} {{ author.first_name }} </h1>
+<p>{{author.date_of_birth}}</p>
+
+<h3>Book</h3>
+{% for book in author.book_set.all %}
+  <dt><a href="{% url 'book-detail' book.pk %}">{{book}}</a> ({{book.bookinstance_set.all.count}})</dt>
+  <dd>{{book.sumary}}</dd>
+{% endfor %}
+
+{% else %}
+<p>There are no author in the library.</p>
+{% endif %}
+
+<!-- <p><strong>Author:</strong> <a href="">{{ book.author }}</a></p> author detail link not yet defined -->
+<!-- <p><strong>Summary:</strong> {{ book.summary }}</p> -->
+
+
+<!-- <div style="margin-left:20px;margin-top:20px">
+    <h4>Copies</h4>
+
+    {% for copy in book.bookinstance_set.all %}
+    <hr>
+    <p
+        class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+        {{ copy.get_status_display }}
+    </p>
+    {% if copy.status != 'a' %}
+    <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
+    {% endif %}
+    <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
+    <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
+    {% endfor %}
+</div> -->
+{% endblock %}
