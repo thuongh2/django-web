@@ -1,5 +1,5 @@
 # django-web
-# Trang web khóa học trược tuyến bằng Django
+# Trang web khóa học trực tuyến bằng Django
 
 ### Các chức năng chính:
 - Xem khóa học
